@@ -1,25 +1,16 @@
-// App.jsx — root component for PassGuard
-// For now it's just a shell; we'll add components in later steps
-
-function App() {
-  return (
-    <div className="app">
-      <h1>🔐 PassGuard</h1>
-      <p>Test your password strength in real time</p>
-    </div>
-  );
-}
-
-// App.jsx — root component for PassGuard
-// Owns the password state so multiple child components can share it via props
-
 import { useState } from "react";
 import PasswordInput from "./components/PasswordInput";
+import { getScore, getStrengthLevel, getCrackTime } from "./utils/passwordStrength";
 import "./App.css";
 
 function App() {
-  // The password lives here (state) and flows down to children (props)
   const [password, setPassword] = useState("");
+
+  // Derived values — recalculated on every render from state.
+  // No extra useState needed: score is COMPUTED from password, not stored.
+  const score = getScore(password);
+  const level = getStrengthLevel(score);
+  const crackTime = getCrackTime(password);
 
   return (
     <div className="app">
@@ -28,8 +19,11 @@ function App() {
 
       <PasswordInput password={password} onPasswordChange={setPassword} />
 
-      {/* Temporary debug line — proves state updates live. We'll remove it later. */}
-      <p style={{ opacity: 0.5 }}>Current value: {password}</p>
+      {/* Temporary — StrengthMeter component will replace this in Step 4 */}
+      <p>
+        Score: {score}/100 — <span style={{ color: level.color }}>{level.label}</span>
+      </p>
+      <p>Time to crack: {crackTime}</p>
     </div>
   );
 }

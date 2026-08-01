@@ -15,7 +15,7 @@ function App() {
   // Show a neutral placeholder until the user actually types something
   const level = password
     ? getStrengthLevel(score)
-    : { label: "—", color: "#ccc" };
+    : { label: "—", color: "#8b949e" };
   const crackTime = getCrackTime(password);
 
   return (

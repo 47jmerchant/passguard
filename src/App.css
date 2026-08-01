@@ -94,3 +94,99 @@
 .rule-icon {
   margin-right: 0.5rem;
 }
+
+/* --- Generator --- */
+.divider {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+.generator h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.length-label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.length-label input[type="range"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.option {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.generate-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #4a90d9;
+  color: white;
+  cursor: pointer;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: #3a7bc0;
+}
+
+.generate-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.warning {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.generated-output {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.generated-output code {
+  display: block;
+  word-break: break-all;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.output-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.output-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #eee;
+  cursor: pointer;
+}
+
+.output-actions button:hover {
+  background: #ddd;
+}

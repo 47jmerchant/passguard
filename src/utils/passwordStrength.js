@@ -113,3 +113,42 @@ export function getCrackTime(password) {
   if (years > 1e9) return "billions of years";
   return `${Math.round(years).toLocaleString()} years`;
 }
+
+// --- Password generation ---
+
+// Character pools keyed by option name.
+// The generator component's checkboxes map directly onto these keys.
+const charPools = {
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  numbers: "0123456789",
+  symbols: "!@#$%^&*()-_=+[]{};:,.<>?",
+};
+
+// Generate a random password.
+// - length: how many characters
+// - options: { lowercase: true, uppercase: true, ... }
+export function generatePassword(length, options) {
+  // Object.entries + filter + map: build the active pool from
+  // only the options the user checked
+  const pool = Object.entries(options)
+    .filter(([, enabled]) => enabled)
+    .map(([name]) => charPools[name])
+    .join("");
+
+  // Guard: if every box is unchecked there's nothing to build from
+  if (!pool) return "";
+
+  // Build the password one random character at a time.
+  // crypto.getRandomValues is the cryptographically secure way to
+  // get randomness in the browser — Math.random() is NOT safe for
+  // security purposes (it's predictable). Nice detail for a security app.
+  const randomValues = new Uint32Array(length);
+  crypto.getRandomValues(randomValues);
+
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += pool[randomValues[i] % pool.length];
+  }
+  return result;
+}

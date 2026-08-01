@@ -2,6 +2,7 @@ import { useState } from "react";
 import PasswordInput from "./components/PasswordInput";
 import StrengthMeter from "./components/StrengthMeter";
 import RuleChecklist from "./components/RuleChecklist";
+import Generator from "./components/Generator";
 import { getScore, getStrengthLevel, getCrackTime } from "./utils/passwordStrength";
 import "./App.css";
 
@@ -25,6 +26,9 @@ function App() {
       <PasswordInput password={password} onPasswordChange={setPassword} />
       <StrengthMeter score={score} level={level} crackTime={crackTime} />
       <RuleChecklist password={password} />
+      <hr className="divider" />
+
+      <Generator onUsePassword={setPassword} />
     </div>
   );
 }
